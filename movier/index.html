@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+	<title>movier</title>
+	 <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+	 <link rel="stylesheet" type="text/css" href="css/style.css">
+	 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+	<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+	 <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+	 <script>
+	 	$(window).load(function(){
+	 		  setTimeout(function(){
+        	$('header').addClass('loaded');
+    },2000);
+	 		
+	 	});
+	 </script>
+<body ng-app="movie">
+	<header>
+		<div class="logo">MOVIESHEEP</div>
+	</header>
+	<section class="main">
+		<div ng-controller="MovieController">
+			<section class="search-form-wrapper">
+				<div class="searchform" ng-click="open =! open" ng-class="{'open':open}">
+					<input type="text" calss="search" ng-model="search" placeholder="Enter Keyword">
+					<label class="sb-icon-search">
+						<i class="fa fa-search" aria-hidden="true"></i></label>
+				</div>
+			</section>
+			<div class="list-wrapper grid" when-scrolled="">
+				<div class="list-item grid-item" ng-repeat="movie in movies | filter:search">
+					<div class="thum">
+						 <img src ="http://image.tmdb.org/t/p/w300{{movie.poster_path}}" width="300">
+					</div>
+					<div ng-show="true" class="like" ng-click="selected =! selected" ng-class="{'selected':selected}"><i class="fa fa-heart" aria-hidden="true"></i></div>
+					<div class="desc">
+					<h3 class="title" ng-show="false">{{movie.original_title}}</h3>
+					<div class="year" ng-show="false">{{movie.release_date | date : "yyyy"}}</div>
+					</div>
+					<div class="more" ng-click="seeMore(movie)">
+						<i class="fa fa-info-circle" aria-hidden="true"></i> SEE INFO
+					</div>
+				</div>
+				<div class="load-more-wrapper">
+					<button ng-click="loadMore()"><span class="load-text">Load More</span> <i class="fa fa-refresh" aria-hidden="true"></i></button>
+				</div>
+			</div>
+			<div class="fav-list" ng-show="false">
+				<ul>
+					<li>test</li>
+					<li>test</li>
+					<li>test</li>
+				</ul>
+			</div>
+			
+		</div>
+		
+	</section>
+	<footer>
+		Powered by movier
+	</footer>
+<script src= "js/app.js"></script>
+</body>
+
+<script type="text/ng-template" id="modal.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></button>
+    </div>
+    <div class="modal-body clearfix">
+    	<div class="thum"><img src ="http://image.tmdb.org/t/p/w500{{moviemodal.poster_path}}" width="300"></div>
+    	<div class="description">
+    		<h3>{{moviemodal.original_title}}</h3>
+    		<div class="genres">
+						<span class="genre" ng-repeat="genre in genres">{{genre}}</span>
+			</div>
+    		<p class="year">Release : {{moviemodal.release_date  | date : 'yyyy MM/dd'}}</p>
+    		<p class="rate">Popularity : {{moviemodal.vote_average}}</p>
+       		<p class="overview">Overview : {{moviemodal.overview}}</p>
+       	</div>
+    </div>
+    <!-- <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="$close()">CLOSE</button>
+    </div> -->
+</script>
+</html>
