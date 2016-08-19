@@ -1,0 +1,273 @@
+/****************************
+
+    General
+
+****************************/
+html,
+body{
+    height:100%;
+}
+
+body{
+	background: #eee;
+    margin: 0;
+}
+*,
+*:after,
+*:before{
+	box-sizing: border-box
+}
+.clearfix:after{
+    content: "";
+    display: block;
+    clear: both;
+    height:0;
+}
+
+header{
+    height:100%;
+    position:relative;
+    transition: all 0.5s ease-in;
+    background:#CC2936;
+}
+.logo{
+	color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    letter-spacing: 0.3em;
+     transition: all 0.5s ease-in;
+}
+header.loaded{
+    height:50px;
+    padding:10px;
+        box-shadow: 0 1px 2px #555;
+}
+.loaded .logo{
+    font-size:15px;
+}
+.search-form-wrapper{
+    text-align: right;
+
+}
+.searchform{
+    display: inline-block;
+   width: 250px;
+    position: relative;
+    text-align: right;
+    margin-bottom: 25px;
+    margin-right:25px;
+}
+.searchform input[type=text]{
+        width: 10%;
+    height: 40px;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 43px;
+    border-radius: 23px;
+    border: 0;
+    background:#CC2936;
+    transition: all 0.2s;
+}
+.searchform input[type=text] i{
+    color:#fff;
+}
+.searchform input[type=text]:focus,
+.searchform.open input[type=text]{
+    width:100%;
+    padding-left:43px;
+    background:#fff;
+}
+.searchform.open .sb-icon-search{
+    color:#999;
+}
+.sb-icon-search{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #fff;
+}
+.main{
+	padding:30px;
+}
+.list-wrapper{
+    text-align: center;
+}
+.list-item{
+	width: 200px;
+    display: inline-block;
+    margin-left:10px;
+    margin-right:10px;   
+    margin-bottom: 20px;
+    position: relative;
+    transition: all 0.2s;
+}
+.list-item:hover{
+    transform: scale(1.05);
+}
+/*.list-item:hover .more{
+   height: 100%;
+   line-height: 300px;
+   font-size:14px;
+}*/
+.thum img{
+	width:200px;
+}
+
+.like{
+	position: absolute;
+    top: 5px;
+    right: 6px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.like i{
+	    color: #444;
+	    transition: all 0.2s;
+}
+.like.selected i,
+.like:hover i{
+	color:red;
+	transition: all 0.2s;
+}
+.desc{
+	position: absolute;
+	top: 0;
+	background:rgba(0,0,0,0.2);
+}
+.year{
+	color:#fff;
+}
+.more{
+    
+	position: absolute;
+    bottom: 0;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    /*height: 100%;*/
+    height:40px;
+    line-height: 40px; 
+    background-image: linear-gradient( 180deg, rgba(0,0,0,0.1), black );
+    cursor: pointer;
+    font-size: 11px;
+    /*line-height: 300px;*/
+    transition: all 0.2s;
+}
+.more i{
+    color:#CC2936;
+}
+
+/********************
+    
+    modal
+
+********************/
+.modal-dialog{
+    width:700px;
+}
+.modal-content{
+    background:transparent;
+    box-shadow:none;
+        border: 0;
+}
+.modal-backdrop.in{
+    opacity:0.8;
+}
+.modal-header{
+    border-bottom:0;
+}
+.close{
+    color:#fff;
+    opacity: 1;
+}
+.modal-body .thum{
+    text-align: center;
+    float:left;
+}
+.modal-body .description{
+    float: left;
+    width: calc( 100% - 300px);
+    padding: 0 20px;
+    color: #eee;
+}
+.modal-body .thum img{
+    width:300px;
+}
+.genres{
+    margin-bottom:10px;
+}
+.genre{
+    display: inline-block;
+    padding: 2px 5px;
+    background: #CC2936;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+
+}
+.overview{
+    padding: 10px 0;
+    line-height: 1.7;
+    border-top: 1px dotted #555;
+    border-bottom: 1px dotted #555;
+}
+.load-more-wrapper{
+        margin: 20px 0;
+}
+.load-more-wrapper button{
+   width:200px;
+   height:50px;
+   line-height: 50px;
+    background: #CC2936;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    transition: all 0.3s;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.load-more-wrapper button:focus{
+    outline: 0;
+}
+.load-text{
+    display: inline-block;
+    transition: all 0.5s;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.load-more-wrapper button i{
+   
+    transition: all 0.5s;
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    transform: translate(0,-50%);
+}
+.load-more-wrapper button:hover i{
+   left:49%;
+}
+.load-more-wrapper button:hover span{
+   transform: translate(300px,-50%);
+}
+/*****************************
+
+    fav list
+
+*****************************/
+.fav-list{
+        height: 100px;
+        width:100%;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
